@@ -1,0 +1,75 @@
+/* Estilos mínimos de placeholder — agregar/optimizar según diseño */
+:root {
+  --navbar-height: 70px; /* Altura usada para el navbar fijo */
+  --container-max-width: 1100px;
+}
+
+/* Asegura que el contenido no quede tapado por el navbar fijo */
+body { padding-top: var(--navbar-height); }
+.container { max-width: var(--container-max-width); }
+
+/* 🔧 Carousel: tamaño fijo para imágenes (ancho 100% y alto fijo) */
+#conafeCarousel { max-width: 1100px; margin: 0 auto; }
+#conafeCarousel .carousel-item img {
+  width: 100%;      /* ancho relativo al contenedor */
+  height: 400px;    /* altura fija para escritorio */
+  object-fit: cover;/* recorta y centra la imagen manteniendo proporción */
+}
+
+/* Ajuste para pantallas pequeñas */
+@media (max-width: 768px) {
+  #conafeCarousel .carousel-item img { height: 250px; }
+}
+
+@media (max-width: 480px) {
+  #conafeCarousel .carousel-item img { height: 180px; }
+}
+
+/* ════════════════════════════════════════════ */
+/* Espaciado y márgenes para formularios (mejora visual) */
+/* Aplica márgenes consistentes entre inputs, labels y grupos */
+form {
+  margin-top: 50px; /* separación desde la barra de navegación (incrementada +20px) */
+  margin-bottom: 1.5rem; /* separación entre formularios y otros bloques */
+}
+
+/* Asegura espacio entre columnas internas en formularios en todas las pantallas */
+form .row > [class*="col-"] {
+  margin-bottom: 0.75rem;
+}
+
+/* Inputs, selects y textareas con margen inferior para separar elementos */
+form .form-control,
+form select,
+form textarea,
+form .form-select {
+  margin-bottom: 0.5rem;
+}
+
+/* Etiquetas con pequeño margen inferior y display block para consistencia */
+form .form-label,
+form label {
+  display: block;
+  margin-bottom: 0.35rem;
+  font-weight: 600;
+}
+
+/* Botones dentro de formularios con margen superior para separarlos del resto */
+form .btn {
+  margin-top: 0.5rem;
+}
+
+/* Clase utilitaria para secciones dentro de formularios */
+.form-section {
+  padding: 0.75rem 0;
+  margin-bottom: 0.75rem;
+}
+
+/* Asegurar algo de espacio en la vista móvil para inputs a full-width */
+@media (max-width: 576px) {
+  form .row > [class*="col-"] {
+    margin-bottom: 0.5rem;
+  }
+}
+
+/* ════════════════════════════════════════════ */
