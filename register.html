@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Registrarse - Conafe</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+  <main class="container">
+    <h2>Registrarse</h2>
+    <form id="regForm">
+      <label>Nombre</label>
+      <input type="text" name="name" required>
+      <label>Email</label>
+      <input type="email" name="email" required>
+      <label>Contraseña</label>
+      <input type="password" name="password" required>
+      <button type="submit" class="btn">Crear cuenta</button>
+    </form>
+    <p>¿Ya tienes cuenta? <a href="login.html">Iniciar sesión</a></p>
+    <div id="msg" class="msg"></div>
+  </main>
+  <script src="assets/js/app.js"></script>
+  <script>
+    document.getElementById('regForm').addEventListener('submit', async function(e){
+      e.preventDefault();
+      const form = e.target;
+      const data = { action: 'register', name: form.name.value, email: form.email.value, password: form.password.value };
+      const res = await apiPost(data);
+      document.getElementById('msg').textContent = res.message || JSON.stringify(res);
+      if(res.success) window.location.href = 'login.html';
+    });
+  </script>
+</body>
+</html>

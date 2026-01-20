@@ -1,87 +1,38 @@
-# ConafeLogin - Sistema de Gestión Educativa
+# ConafeLogin - Notas de desarrollo
 
-Sistema web para la gestión de registros educativos, exámenes y seguimiento de beneficiarios.
+Acciones realizadas hasta ahora:
 
-## Características
+- Centralizar DB: `config/database.php` (usa variables de entorno: DB_HOST, DB_NAME, DB_USER, DB_PASS).
+- Estructura de assets pública en `public/assets/` con `img`, `css`, `js`.
+- Se agregaron placeholders SVG para imágenes faltantes. Reemplazos realizados en `public/index.php`.
+- Seguridad: ahora las contraseñas se guardan con `password_hash` y el login usa `password_verify` (se re-hash automáticamente en primer login cuando la contraseña estaba en texto plano).
 
-- ✅ Autenticación segura con contraseñas hasheadas (`password_hash`)
-- ✅ Gestión centralizada de base de datos
-- ✅ Interfaz web responsive
-- ✅ Registro de múltiples tipos de usuarios (educadores, adultos, embarazadas)
-- ✅ Control de exámenes y documentos
-- ✅ Proyección de trayectorias educativas
+Siguientes pasos recomendados (pendientes):
+- Revisar todas las rutas relativas en archivos dentro de `src/pages/` y convertir la aplicación para servir todas las vistas desde `public/` (mejor práctica).
+- Migrar datos reales a la base de datos local y sincronizar usuarios (si las contraseñas estaban en texto plano, se actualizarán automáticamente al iniciar sesión).
+- Reemplazar consultas SQL directas por métodos en `src/Model/` y mover lógica a `src/Controller/` (refactor a MVC ligero).
+- Agregar pruebas básicas (integración/funcionales) para login y CRUD de exámenes.
 
-## Requisitos
+Cómo usar localmente:
+1) Copiar `.env.example` a `.env` y personalizar variables.
+2) Asegurarse de tener la BD creada (por defecto `conafe_db`) y permisos de usuario.
+3) Iniciar Apache/XAMPP y abrir `http://localhost/ConafeLogin/public/`.
 
-- PHP 7.4 o superior
-- MySQL 5.7 o superior
-- Servidor web (Apache, Nginx)
+---
 
-## Instalación
+## Frontend estático + API PHP (XAMPP)
 
-### 1. Clonar el repositorio
-```bash
-git clone https://github.com/chiemilio/micloplamiacion.githib.io.git
-cd micloplamiacion.githib.io
-```
+Se añadió una versión simple de frontend estático (HTML/CSS/JS) en la raíz y endpoints PHP en `public/api/` que permiten registrar y autenticar usuarios contra MySQL local.
 
-### 2. Configurar variables de entorno
-```bash
-cp .env.example .env
-```
+Pasos rápidos para probarlo (Windows + XAMPP):
 
-Edita `.env` con tus credenciales:
-```
-DB_HOST=localhost
-DB_NAME=conafe_db
-DB_USER=root
-DB_PASS=tu_contraseña
-```
+1. Arranca Apache y MySQL desde el XAMPP Control Panel.
+2. Importa `db/xampp_init.sql` desde phpMyAdmin (o ejecutar el SQL manualmente) para crear la BD `conafe_db` y la tabla `users`.
+3. Asegúrate de que la carpeta del proyecto esté en `C:/xampp/htdocs/ConafeLogin`.
+4. Revisa y, si hace falta, edita `public/api/db.php` para ajustar `DB_HOST`, `DB_USER`, `DB_PASS` y `DB_NAME`.
+5. Abre `http://localhost/ConafeLogin/index.html` en el navegador. Regístrate y usa el formulario de login.
 
-### 3. Crear base de datos
-```bash
-mysql -u root -p < db/init.sql
-```
+Notas:
+- Las llamadas de JS apuntan a `public/api/auth.php` y requieren que Apache sirva PHP (no funciona por `file://`).
+- Para producción se debe añadir manejo de sesiones, validaciones y medidas de seguridad adicionales.
 
-### 4. Iniciar servidor
-```bash
-php -S localhost:8000 -t public/
-```
-
-Abre en tu navegador: `http://localhost:8000`
-
-## Estructura del Proyecto
-
-```
-├── config/          # Configuración (DB, APP)
-├── db/              # Scripts SQL (init, migraciones, seeds)
-├── public/          # Punto de entrada público
-│   ├── index.php    # Página principal
-│   ├── login.php    # Login
-│   ├── assets/      # CSS, JS, imágenes
-├── src/
-│   └── pages/       # Vistas PHP
-├── .env.example     # Variables de entorno (ejemplo)
-└── README.md        # Este archivo
-```
-
-## Seguridad
-
-- Las contraseñas se almacenan con `password_hash()` (bcrypt)
-- Las migraciones automáticas actualizarán contraseñas en texto plano
-- Variables sensibles en `.env` (no se commiteará)
-
-## Próximas Mejoras
-
-- [ ] Refactorización completa a patrón MVC
-- [ ] Pruebas unitarias e integración
-- [ ] API REST
-- [ ] Dashboard mejorado
-
-## Licencia
-
-Proyecto privado - CONAFE
-
-## Contacto
-
-Para preguntas o soporte, contacta al equipo de desarrollo.
