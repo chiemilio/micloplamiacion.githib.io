@@ -8,7 +8,7 @@
 body { padding-top: var(--navbar-height); }
 .container { max-width: var(--container-max-width); }
 
-/* 🔧 Carousel: tamaño fijo para imágenes (ancho 100% y alto fijo) */
+/*  Carousel: tamaño fijo para imágenes (ancho 100% y alto fijo) */
 #conafeCarousel { max-width: 1100px; margin: 0 auto; }
 #conafeCarousel .carousel-item img {
   width: 100%;      /* ancho relativo al contenedor */
@@ -25,7 +25,6 @@ body { padding-top: var(--navbar-height); }
   #conafeCarousel .carousel-item img { height: 180px; }
 }
 
-/* ════════════════════════════════════════════ */
 /* Espaciado y márgenes para formularios (mejora visual) */
 /* Aplica márgenes consistentes entre inputs, labels y grupos */
 form {
@@ -72,4 +71,3 @@ form .btn {
   }
 }
 
-/* ════════════════════════════════════════════ */
