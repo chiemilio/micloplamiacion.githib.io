@@ -1,0 +1,34 @@
+# Variables de entorno
+.env
+.env.local
+.env.*.local
+
+# Directorios de dependencias
+vendor/
+node_modules/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Logs
+*.log
+logs/
+
+# Cache
+cache/
+tmp/
+
+# Archivos temporales
+*.tmp
+.DS_Store
+Thumbs.db
+
+# Base de datos local
+*.db
+*.sqlite
+*.sqlite3
